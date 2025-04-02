@@ -613,7 +613,7 @@ def _allocate_by_priority_1d(request, priority, width, supply):
     active[0] = True
     # Create a vector of the last activated target
     c_i = 0
-    while supply > 0:
+    while supply > 0 and any(active):
         # Compute the slopes of the active targets of supply
         slopes = request*active
         slopes /= np.sum(slopes)
