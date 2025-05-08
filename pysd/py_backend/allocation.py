@@ -637,6 +637,8 @@ def _allocate_by_priority_1d(request, priority, width, supply):
             # One or more target have reached their request
             active[out == request] = False
         supply -= dx
+        if supply < 1e-12:  # tolerance threshold
+            supply = 0.0
     # Return the distributed supply in the original order
     # adding to it again the request 0 if the where removed
     out_return[~is_0] = out[sort.argsort()]
